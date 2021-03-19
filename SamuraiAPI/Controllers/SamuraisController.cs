@@ -98,7 +98,6 @@ namespace SamuraiAPI.Controllers
 
             return NoContent();
         }
-
         // DELETE: /api/samurais/sproc/14
         [HttpDelete("sproc/{id}")]
         public async Task<ActionResult<string>> DeleteQuotesForSamurai(int id)
@@ -106,8 +105,6 @@ namespace SamuraiAPI.Controllers
             var rowsAffected = await _context.Database.ExecuteSqlInterpolatedAsync($"EXEC DeleteQuotesForSamurai {id}");
             return $"{rowsAffected} quotes deleted";
         }
-
-
         private bool SamuraiExists(int id)
         {
             return _context.Samurais.Any(e => e.Id == id);

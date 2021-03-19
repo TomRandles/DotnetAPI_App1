@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SamuraiApp.Data;
 using SamuraiApp.Data.Database;
 
 namespace SamuraiAPI
@@ -39,6 +40,9 @@ namespace SamuraiAPI
                                                   options.UseSqlServer(Configuration.GetConnectionString("SamuraiConnection"))
                                                   .EnableSensitiveDataLogging()
                                                   .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+            // Add business logic class. Used to decouple db functions from controller. 
+            services.AddScoped<BusinessDataLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
